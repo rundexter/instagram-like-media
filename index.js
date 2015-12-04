@@ -29,22 +29,23 @@ module.exports = {
 
         var mediaId = step.input('mediaId').first();
 
-        if (!mediaId) {
+        if (_.isEmpty(mediaId)) {
 
             this.fail('A [mediaId] is Required.');
+        } else {
+
+            this.authParams(dexter);
+
+            ig.add_like(mediaId, function (err) {
+
+                if (err) {
+
+                    this.fail(err);
+                } else {
+
+                    this.complete({success: true});
+                }
+            }.bind(this));
         }
-
-        this.authParams(dexter);
-
-        ig.add_like(mediaId, function (err) {
-
-            if (err) {
-
-                this.fail(err);
-            } else {
-
-                this.complete({success: true});
-            }
-        }.bind(this));
     }
 };
