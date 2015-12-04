@@ -1,17 +1,6 @@
 var _ = require('lodash');
 var ig = require('instagram-node').instagram();
 
-var globalPickResult = {
-    users: {
-        fields: {
-            'id': 'id',
-            'full_name': 'full_name',
-            'profile_picture': 'profile_picture',
-            'username': 'username'
-        }
-    }
-};
-
 module.exports = {
 
     /**
@@ -19,7 +8,7 @@ module.exports = {
      *
      * @param dexter
      */
-    authParams: function (dexter, spotifyApi) {
+    authParams: function (dexter) {
 
         if (dexter.environment('instagram_access_token')) {
 
@@ -29,7 +18,7 @@ module.exports = {
             this.fail('A [instagram_access_token] environment is Required.');
         }
     },
-    
+
     /**
      * The main entry point for the Dexter module
      *
