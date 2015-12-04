@@ -29,18 +29,7 @@ module.exports = {
             this.fail('A [instagram_access_token] environment is Required.');
         }
     },
-
-    prepareStringInputs: function (inputs) {
-        var result = {};
-
-        _.map(inputs, function (inputValue, inputKey) {
-
-            result[inputKey] = _(inputValue).toString();
-        });
-
-        return result;
-    },
-
+    
     /**
      * The main entry point for the Dexter module
      *
