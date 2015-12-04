@@ -36,7 +36,7 @@ module.exports = {
 
         this.authParams(dexter);
 
-        ig.likes(mediaId, function (err) {
+        ig.add_like(mediaId, function (err) {
 
             if (err) {
 
