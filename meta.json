@@ -16,5 +16,6 @@
             "title":"Success"
         }
     ],
+    "icon": "instagram",
     "title": "Instagram Like Media" /* Required.A display name for the module */
 }
