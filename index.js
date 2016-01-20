@@ -13,9 +13,9 @@ module.exports = {
      * @param {AppStep} step Accessor for the configuration for the step using this module.  Use step.input('{key}') to retrieve input data.
      * @param {AppData} dexter Container for all data used in this workflow.
      */
-    run: function(step, dexter) {var credentials = dexter.provider('instagram').credentials(),
-        inputs = util.pickInputs(step, pickInputs),
-        validateErrors = util.checkValidateErrors(inputs, pickInputs);
+    run: function(step, dexter) {
+        var credentials = dexter.provider('instagram').credentials(),
+            cdlidateErrors = util.checkValidateErrors(inputs, pickInputs);
 
         // check params.
         if (validateErrors)
