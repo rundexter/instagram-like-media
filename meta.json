@@ -2,20 +2,22 @@
  * Metadata describing the module operation
  */
 {
-    //Required. Inputs the module expects.
     "inputs": [
         {
             "id": "mediaId",
             "title":"Media ID"
         }
     ],
-    //Required. Outputs the module emits.
     "outputs": [
         {
             "id": "success",
             "title":"Success"
         }
     ],
+    "providers": [{
+        "name": "instagram",
+        "scopes": [ "basic", "likes" ]
+    }],
     "icon": "instagram",
-    "title": "Instagram Like Media" /* Required.A display name for the module */
+    "title": "Instagram Like Media"
 }

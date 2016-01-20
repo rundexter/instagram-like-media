@@ -1,51 +1,30 @@
-var _ = require('lodash');
-var ig = require('instagram-node').instagram();
+var _ = require('lodash'),
+    util = require('./util.js'),
+    instagram = require('instagram-node').instagram();
+
+var pickInputs = {
+        'mediaId': { key: 'mediaId', validate: { req: true } }
+    };
 
 module.exports = {
-
-    /**
-     * Set acess token.
-     *
-     * @param dexter
-     */
-    authParams: function (dexter) {
-
-        if (dexter.environment('instagram_access_token')) {
-
-            ig.use({access_token: dexter.environment('instagram_access_token')});
-        } else {
-
-            this.fail('A [instagram_access_token] environment is Required.');
-        }
-    },
-
     /**
      * The main entry point for the Dexter module
      *
      * @param {AppStep} step Accessor for the configuration for the step using this module.  Use step.input('{key}') to retrieve input data.
      * @param {AppData} dexter Container for all data used in this workflow.
      */
-    run: function(step, dexter) {
+    run: function(step, dexter) {var credentials = dexter.provider('instagram').credentials(),
+        inputs = util.pickInputs(step, pickInputs),
+        validateErrors = util.checkValidateErrors(inputs, pickInputs);
 
-        var mediaId = step.input('mediaId').first();
+        // check params.
+        if (validateErrors)
+            return this.fail(validateErrors);
 
-        if (_.isEmpty(mediaId)) {
+        instagram.use({ access_token: _.get(credentials, 'access_token') });
+        instagram.add_like(inputs.mediaId, function (error) {
 
-            this.fail('A [mediaId] is Required.');
-        } else {
-
-            this.authParams(dexter);
-
-            ig.add_like(mediaId, function (err) {
-
-                if (err) {
-
-                    this.fail(err);
-                } else {
-
-                    this.complete({success: true});
-                }
-            }.bind(this));
-        }
+            error? this.fail(error) : this.complete({ success: true });
+        }.bind(this));
     }
 };
