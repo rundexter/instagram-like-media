@@ -1,13 +1,17 @@
 {
-  "name": "instagram-like-media",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "author": "Alexander",
-  "license": "ISC",
-  "private": true,
-  "dependencies": {
-    "instagram-node": "^0.5.8",
-    "lodash": "^3.10.1"
-  }
+   "name": "instagram-like-media",
+   "version": "0.0.1",
+   "description": "Set a like on this media by the currently authenticated user",
+   "main": "index.js",
+   "author": "Run Dexter, Inc",
+   "license": "MIT",
+   "private": true,
+   "dependencies": {
+      "instagram-node": "^0.5.8",
+      "lodash": "^3.10.1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/rundexter/instagram-like-media"
+   }
 }
